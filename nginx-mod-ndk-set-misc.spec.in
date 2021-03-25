@@ -4,7 +4,7 @@
 Summary: Various set_xxx directives added to nginx's rewrite + ngx_devel_kit
 Name: nginx-mod-ndk-set-misc
 Version: %{_ndkver}+%{_setmiscver}
-Release: 1%{?dist}
+Release: 2%{?dist}
 Vendor: Artera
 URL: https://github.com/openresty/set-misc-nginx-module
 
@@ -46,7 +46,7 @@ Various set_xxx directives added to nginx's rewrite + ngx_devel_kit.
 
 %build
 cd %{_builddir}/nginx-%{_nginxver}
-./configure --with-compat --add-dynamic-module=../ngx_devel_kit-%{_ndkver} --add-dynamic-module=../set-misc-nginx-module-%{_setmiscver}
+./configure --with-file-aio --with-ipv6 --with-stream %(nginx -V 2>&1 | grep -Po -- '--with-http[^ ]+' | xargs echo) --with-cc-opt='%{optflags}' --add-dynamic-module=../ngx_devel_kit-%{_ndkver} --add-dynamic-module=../set-misc-nginx-module-%{_setmiscver}
 make modules
 
 %install
