@@ -1,5 +1,5 @@
 %define _setmiscver         0.33
-%define _ndkver             0.3.1
+%define _ndkver             0.3.2
 
 Summary: Various set_xxx directives added to nginx's rewrite + ngx_devel_kit
 Name: nginx-mod-ndk-set-misc
