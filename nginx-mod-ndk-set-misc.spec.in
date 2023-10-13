@@ -1,5 +1,5 @@
-%define _setmiscver         0.32
-%define _ndkver             0.3.1
+%define _setmiscver         0.33
+%define _ndkver             0.3.2
 
 Summary: Various set_xxx directives added to nginx's rewrite + ngx_devel_kit
 Name: nginx-mod-ndk-set-misc
@@ -26,7 +26,6 @@ BuildRequires: pcre-devel
 BuildRequires: zlib-devel
 BuildRequires: perl-devel
 BuildRequires: gd-devel
-BuildRequires: GeoIP-devel
 BuildRequires: libxslt-devel
 BuildRequires: perl-devel
 BuildRequires: perl(ExtUtils::Embed)
@@ -46,7 +45,7 @@ Various set_xxx directives added to nginx's rewrite + ngx_devel_kit.
 
 %build
 cd %{_builddir}/nginx-%{_nginxver}
-./configure %(nginx -V 2>&1 | grep 'configure arguments' | sed -r 's@^[^:]+: @@') --add-dynamic-module=../ngx_devel_kit-%{_ndkver} --add-dynamic-module=../set-misc-nginx-module-%{_setmiscver}
+./configure --with-file-aio --with-ipv6 --with-stream %(nginx -V 2>&1 | grep -Po -- '--with-http[^ ]+' | xargs echo) --with-cc-opt='%{optflags}' --add-dynamic-module=../ngx_devel_kit-%{_ndkver} --add-dynamic-module=../set-misc-nginx-module-%{_setmiscver}
 make modules
 
 %install
