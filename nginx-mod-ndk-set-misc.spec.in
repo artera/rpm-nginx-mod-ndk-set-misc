@@ -45,7 +45,7 @@ Various set_xxx directives added to nginx's rewrite + ngx_devel_kit.
 
 %build
 cd %{_builddir}/nginx-%{_nginxver}
-./configure --with-file-aio --with-ipv6 --with-stream %(nginx -V 2>&1 | grep -Po -- '--with-http[^ ]+' | xargs echo) --with-cc-opt='%{optflags}' --add-dynamic-module=../ngx_devel_kit-%{_ndkver} --add-dynamic-module=../set-misc-nginx-module-%{_setmiscver}
+./configure --with-stream --with-compat --add-dynamic-module=../ngx_devel_kit-%{_ndkver} --add-dynamic-module=../set-misc-nginx-module-%{_setmiscver}
 make modules
 
 %install
